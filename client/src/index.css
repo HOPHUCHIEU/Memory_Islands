@@ -1,0 +1,648 @@
+
+@import url("https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Playfair+Display:wght@400;500;600&display=swap");
+
+:root {
+  font-family: "DM Sans", sans-serif;
+
+  color: #25231f;
+  background: #f4f1eb;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+
+  --background: #f4f1eb;
+  --surface: #ebe6dc;
+  --text: #25231f;
+  --muted: #817b70;
+  --border: rgba(37, 35, 31, 0.15);
+  --dark: #25231f;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  background: var(--background);
+}
+
+button,
+input,
+textarea {
+  font: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+.app {
+  width: 100%;
+  overflow: hidden;
+}
+
+/* =========================
+   HERO
+========================= */
+
+.hero {
+  position: relative;
+
+  min-height: 100svh;
+
+  display: flex;
+  align-items: center;
+
+  padding:
+    80px
+    clamp(24px, 6vw, 100px);
+
+  color: #fff;
+
+  background:
+    linear-gradient(
+      rgba(20, 19, 17, 0.48),
+      rgba(20, 19, 17, 0.72)
+    ),
+    url("https://images.unsplash.com/photo-1511988617509-a57c8a288659?auto=format&fit=crop&w=2400&q=90")
+    center / cover;
+}
+
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+
+  background:
+    radial-gradient(
+      circle at 70% 30%,
+      rgba(255,255,255,0.1),
+      transparent 35%
+    );
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+
+  max-width: 850px;
+}
+
+.hero-label,
+.section-label {
+  margin: 0 0 24px;
+
+  font-size: 12px;
+  letter-spacing: 0.22em;
+  font-weight: 600;
+}
+
+.hero h1 {
+  margin: 0;
+
+  font-family: "Playfair Display", serif;
+
+  font-size: clamp(
+    64px,
+    10vw,
+    150px
+  );
+
+  line-height: 0.92;
+  font-weight: 400;
+  letter-spacing: -0.045em;
+}
+
+.hero-description {
+  max-width: 480px;
+
+  margin: 40px 0;
+
+  font-size: clamp(
+    16px,
+    2vw,
+    20px
+  );
+
+  line-height: 1.7;
+
+  color: rgba(255,255,255,0.78);
+}
+
+.hero-button {
+  padding: 15px 24px;
+
+  border: 1px solid
+    rgba(255,255,255,0.5);
+
+  border-radius: 100px;
+
+  color: #fff;
+  background: transparent;
+
+  transition:
+    background 0.3s ease,
+    color 0.3s ease;
+}
+
+.hero-button:hover {
+  color: var(--text);
+  background: #fff;
+}
+
+.hero-scroll {
+  position: absolute;
+
+  z-index: 2;
+
+  right: 40px;
+  bottom: 35px;
+
+  width: 50px;
+  height: 50px;
+
+  border: 1px solid
+    rgba(255,255,255,0.4);
+
+  border-radius: 50%;
+
+  color: #fff;
+  background: transparent;
+
+  font-size: 20px;
+}
+
+/* =========================
+   GENERAL
+========================= */
+
+main {
+  width: 100%;
+}
+
+.upload-section,
+.timeline-section {
+  width: min(
+    1200px,
+    calc(100% - 48px)
+  );
+
+  margin: 0 auto;
+}
+
+.upload-section {
+  padding:
+    clamp(100px, 12vw, 180px)
+    0;
+}
+
+.section-heading {
+  margin-bottom: 60px;
+}
+
+.section-heading h2 {
+  margin: 0;
+
+  font-family: "Playfair Display", serif;
+
+  font-size: clamp(
+    50px,
+    7vw,
+    100px
+  );
+
+  line-height: 0.95;
+
+  font-weight: 400;
+
+  letter-spacing: -0.04em;
+}
+
+.section-heading > p:last-child {
+  max-width: 500px;
+
+  margin-top: 30px;
+
+  color: var(--muted);
+
+  line-height: 1.7;
+}
+
+/* =========================
+   UPLOAD
+========================= */
+
+.upload-form {
+  max-width: 850px;
+}
+
+.drop-zone {
+  position: relative;
+
+  min-height: 500px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border: 1px dashed
+    rgba(37,35,31,0.3);
+
+  background: var(--surface);
+
+  overflow: hidden;
+
+  cursor: pointer;
+
+  transition:
+    border-color 0.3s ease,
+    background 0.3s ease;
+}
+
+.drop-zone:hover {
+  border-color: var(--text);
+  background: #e5dfd3;
+}
+
+.drop-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  gap: 10px;
+
+  color: var(--muted);
+}
+
+.drop-icon {
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  width: 60px;
+  height: 60px;
+
+  margin-bottom: 10px;
+
+  border: 1px solid var(--border);
+  border-radius: 50%;
+
+  font-size: 30px;
+}
+
+.drop-content strong {
+  color: var(--text);
+}
+
+.upload-preview {
+  width: 100%;
+  height: 100%;
+
+  min-height: 500px;
+
+  object-fit: contain;
+
+  background: #ddd7ca;
+}
+
+.form-row {
+  margin-top: 30px;
+}
+
+.form-row label,
+.message-field {
+  display: flex;
+  flex-direction: column;
+
+  gap: 10px;
+
+  color: var(--muted);
+
+  font-size: 13px;
+  letter-spacing: 0.05em;
+}
+
+.form-row input,
+.message-field textarea {
+  border: 1px solid var(--border);
+
+  background: transparent;
+
+  padding: 15px;
+
+  color: var(--text);
+
+  outline: none;
+
+  transition:
+    border-color 0.2s ease;
+}
+
+.form-row input:focus,
+.message-field textarea:focus {
+  border-color: var(--text);
+}
+
+.message-field {
+  margin-top: 25px;
+}
+
+.message-field textarea {
+  resize: vertical;
+
+  min-height: 170px;
+
+  line-height: 1.7;
+}
+
+.submit-button {
+  margin-top: 30px;
+
+  padding: 16px 30px;
+
+  border: 1px solid var(--dark);
+
+  background: var(--dark);
+
+  color: #fff;
+
+  transition:
+    transform 0.2s ease,
+    opacity 0.2s ease;
+}
+
+.submit-button:hover {
+  transform: translateY(-2px);
+}
+
+.submit-button:disabled {
+  cursor: wait;
+  opacity: 0.5;
+}
+
+.form-error {
+  margin-top: 20px;
+
+  color: #9b4037;
+
+  font-size: 14px;
+}
+
+/* =========================
+   TIMELINE
+========================= */
+
+.timeline-section {
+  padding:
+    100px 0
+    180px;
+}
+
+.timeline-heading {
+  margin-bottom: 100px;
+}
+
+.timeline {
+  position: relative;
+
+  display: grid;
+
+  grid-template-columns:
+    repeat(2, minmax(0, 1fr));
+
+  gap:
+    100px
+    70px;
+}
+
+.memory-card {
+  position: relative;
+}
+
+.memory-card:nth-child(even) {
+  margin-top: 180px;
+}
+
+.memory-date {
+  margin-bottom: 18px;
+
+  color: var(--muted);
+
+  font-size: 12px;
+
+  letter-spacing: 0.12em;
+}
+
+.memory-image-wrapper {
+  width: 100%;
+
+  overflow: hidden;
+
+  background: #ded8cc;
+}
+
+.memory-image {
+  display: block;
+
+  width: 100%;
+  height: auto;
+
+  transition:
+    transform 0.7s ease;
+}
+
+.memory-card:hover .memory-image {
+  transform: scale(1.015);
+}
+
+.memory-content {
+  padding: 25px 0;
+}
+
+.memory-content p {
+  max-width: 600px;
+
+  margin: 0;
+
+  font-family:
+    "Playfair Display",
+    serif;
+
+  font-size: clamp(
+    20px,
+    2vw,
+    28px
+  );
+
+  line-height: 1.45;
+}
+
+/* =========================
+   STATES
+========================= */
+
+.loading,
+.empty-state {
+  padding: 100px 20px;
+
+  text-align: center;
+
+  color: var(--muted);
+}
+
+.empty-state p {
+  margin-bottom: 8px;
+
+  color: var(--text);
+
+  font-family:
+    "Playfair Display",
+    serif;
+
+  font-size: 30px;
+}
+
+/* =========================
+   FOOTER
+========================= */
+
+.footer {
+  display: flex;
+
+  justify-content: space-between;
+
+  gap: 30px;
+
+  padding:
+    60px
+    clamp(24px, 6vw, 100px);
+
+  border-top: 1px solid var(--border);
+
+  color: var(--muted);
+
+  font-size: 14px;
+}
+
+.footer-title {
+  margin: 0 0 8px;
+
+  color: var(--text);
+
+  letter-spacing: 0.15em;
+  font-weight: 600;
+}
+
+/* =========================
+   TABLET
+========================= */
+
+@media (max-width: 768px) {
+  .hero {
+    min-height: 90svh;
+
+    padding:
+      50px 24px;
+  }
+
+  .hero h1 {
+    font-size: clamp(
+      55px,
+      16vw,
+      100px
+    );
+  }
+
+  .hero-scroll {
+    right: 24px;
+    bottom: 24px;
+  }
+
+  .upload-section,
+  .timeline-section {
+    width: min(
+      100% - 32px,
+      600px
+    );
+  }
+
+  .drop-zone {
+    min-height: 380px;
+  }
+
+  .upload-preview {
+    min-height: 380px;
+  }
+
+  .timeline {
+    grid-template-columns: 1fr;
+
+    gap: 70px;
+  }
+
+  .memory-card:nth-child(even) {
+    margin-top: 0;
+  }
+
+  .timeline-section {
+    padding-bottom: 100px;
+  }
+
+  .footer {
+    flex-direction: column;
+  }
+}
+
+/* =========================
+   PHONE
+========================= */
+
+@media (max-width: 480px) {
+  .hero {
+    min-height: 100svh;
+  }
+
+  .hero-description {
+    margin: 30px 0;
+  }
+
+  .hero-button {
+    width: 100%;
+  }
+
+  .upload-section {
+    padding-top: 90px;
+  }
+
+  .section-heading {
+    margin-bottom: 45px;
+  }
+
+  .section-heading h2 {
+    font-size: 52px;
+  }
+
+  .drop-zone {
+    min-height: 300px;
+  }
+
+  .upload-preview {
+    min-height: 300px;
+  }
+
+  .timeline-heading {
+    margin-bottom: 60px;
+  }
+
+  .footer {
+    padding:
+      40px 20px;
+  }
+}
+
