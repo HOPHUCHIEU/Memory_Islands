@@ -48,3 +48,4 @@ const Memory = mongoose.model("Memory", memorySchema);
 
 export default Memory;
 
+//lỗi do chữ M viết hoa ở tên file viết thường
