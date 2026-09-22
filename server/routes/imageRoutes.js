@@ -76,7 +76,6 @@
 
 // export default router;
 
-
 import express from "express";
 import { ObjectId } from "mongodb";
 import { getGridFSBucket } from "../services/gridfs.js";
@@ -96,9 +95,7 @@ router.get("/:id", async (req, res) => {
     const bucket = getGridFSBucket();
     const objectId = new ObjectId(id);
 
-    const files = await bucket
-      .find({ _id: objectId })
-      .toArray();
+    const files = await bucket.find({ _id: objectId }).toArray();
 
     if (!files.length) {
       return res.status(404).json({
@@ -109,14 +106,12 @@ router.get("/:id", async (req, res) => {
     const file = files[0];
 
     res.set({
-      "Content-Type":
-        file.contentType || "application/octet-stream",
+      "Content-Type": file.contentType || "application/octet-stream",
       "Content-Length": file.length,
       "Cache-Control": "public, max-age=31536000",
     });
 
-    const downloadStream =
-      bucket.openDownloadStream(objectId);
+    const downloadStream = bucket.openDownloadStream(objectId);
 
     downloadStream.on("error", (error) => {
       console.error("GridFS download error:", error);
